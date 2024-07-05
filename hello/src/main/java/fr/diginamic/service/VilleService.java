@@ -1,17 +1,30 @@
-package fr.diginamic.hello.controleurs;
+package fr.diginamic.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import fr.diginamic.dao.VilleDAO;
+import fr.diginamic.entite.Ville;
+import jakarta.annotation.PostConstruct;
 
 @Service
 public class VilleService {
 	
-	List<Ville> villes = new ArrayList<>();
+	@Autowired
+	VilleDAO vDao;
+	
+	
+	List<Ville> villes;
+	
+	@PostConstruct
+	public void initDonnee() {
+		this.villes = vDao.extractVille();
+	}
 	
 	public List<Ville> extractVilles(){
-		return villes;
+		return vDao.extractVille();
 	}
 	
 	public Ville extractVille(int idVille) {
@@ -33,28 +46,17 @@ public class VilleService {
 	}
 	
 	public List<Ville> insertVilles(Ville ville){
-		villes.add(ville);
+		vDao.insertVille(ville);
 		return villes;
 	}
 	
 	public List<Ville> modifierVille(int idVille, Ville villeModifiee){
-		for(Ville v : villes) {
-			if(v.getId() == idVille) {
-				v.setNom(villeModifiee.getNom());
-				v.setHabitant(villeModifiee.getHabitant());
-			}
-		}
+		vDao.modifVille(idVille, villeModifiee);
 		return villes;
 	}
 	
 	public List<Ville> supprimerVille(int idVille){
-		int index = 0;
-		for(Ville v : villes) {
-			if(v.getId() == idVille) {
-				villes.remove(index);
-			}
-			index++;
-		}
+		vDao.deleteVille(idVille);
 		return villes;
 	}
 	
