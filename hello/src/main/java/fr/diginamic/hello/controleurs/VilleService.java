@@ -1,12 +1,10 @@
-package fr.diginamic.service;
+package fr.diginamic.hello.controleurs;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.diginamic.dao.VilleDAO;
-import fr.diginamic.entite.Ville;
 import jakarta.annotation.PostConstruct;
 
 @Service
@@ -15,6 +13,8 @@ public class VilleService {
 	@Autowired
 	VilleDAO vDao;
 	
+	@Autowired
+	DepartementDAO dDao;
 	
 	List<Ville> villes;
 	
@@ -45,7 +45,9 @@ public class VilleService {
 		return null;
 	}
 	
-	public List<Ville> insertVilles(Ville ville){
+	public List<Ville> insertVilles(Ville ville,String dptName){
+		Departement dpt = dDao.findByName(dptName);
+		ville.setDepartement(dpt);
 		vDao.insertVille(ville);
 		return villes;
 	}

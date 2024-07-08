@@ -1,4 +1,4 @@
-package fr.diginamic.controleur;
+package fr.diginamic.hello.controleurs;
 
 import java.util.List;
 
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.diginamic.entite.Ville;
-import fr.diginamic.service.VilleService;
 import jakarta.validation.Valid;
 
 @RestController
@@ -45,7 +43,7 @@ public class VilleControlleur {
 			}
 		}
 		
-		villeService.insertVilles(ville);
+		villeService.insertVilles(ville,ville.getDepartement().getNom());
 		return ResponseEntity.ok("La ville de " + ville.getNom() +" à été ajouté avec succés !");
 	}
 
@@ -56,7 +54,7 @@ public class VilleControlleur {
 				return ResponseEntity.badRequest().body("Erreur 400 : L'id : "+ville.getId() +" est déjà utilisé");
 			}
 		}
-		villeService.insertVilles(ville);
+		villeService.insertVilles(ville,ville.getDepartement().getNom());
 		return ResponseEntity.ok("La ville de " + ville.getNom() +" à été ajouté avec succés !");
 
 	}

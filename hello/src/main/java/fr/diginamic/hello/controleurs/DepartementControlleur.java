@@ -1,4 +1,4 @@
-package fr.diginamic.controleur;
+package fr.diginamic.hello.controleurs;
 
 import java.util.List;
 
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.diginamic.entite.Departement;
-import fr.diginamic.service.DepartementService;
 import jakarta.validation.Valid;
 
 @RestController
@@ -57,7 +55,7 @@ public class DepartementControlleur {
 			}
 		}
 		departementService.insertDepartement(departement);
-		return ResponseEntity.ok("La ville de " + departement.getNom() +" à été ajouté avec succés !");
+		return ResponseEntity.ok("Le departement de " + departement.getNom() +" à été ajouté avec succés !");
 
 	}
 

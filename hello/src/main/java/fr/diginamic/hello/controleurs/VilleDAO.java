@@ -1,11 +1,10 @@
-package fr.diginamic.dao;
+package fr.diginamic.hello.controleurs;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.diginamic.entite.Ville;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;

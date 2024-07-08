@@ -1,24 +1,38 @@
-package fr.diginamic.entite;
+package fr.diginamic.hello.controleurs;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
+@Table(name = "departement")
 public class Departement {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;	
 	
+	@NotBlank(message ="Le nom de la ville doir être non null")
+	@Size(min = 2, message = "Le nom doit avoir au moins 2 caractère")
 	private String nom;
 	
 	private int habitant;
 	
+	@NotBlank(message ="Le code departement doitn être non null")
+	private int code;
+	
+	@OneToMany(mappedBy="departement")
+	@JsonIgnore
 	List<Ville> villes = new ArrayList<>();
 
 	/**
@@ -82,6 +96,22 @@ public class Departement {
 	public void setVilles(List<Ville> villes) {
 		this.villes = villes;
 	}
+
+	/**
+	 * @return the code
+	 */
+	public int getCode() {
+		return code;
+	}
+
+	/**
+	 * @param code the code to set
+	 */
+	public void setCode(int code) {
+		this.code = code;
+	}
+	
+	
 	
 	
 }

@@ -1,14 +1,18 @@
-package fr.diginamic.entite;
+package fr.diginamic.hello.controleurs;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@Table(name = "ville")
 public class Ville {
 	
 	@Id
@@ -22,6 +26,8 @@ public class Ville {
 	@Min(value = 1, message = "Le nombre d'habitants doit être supérieur ou égal à 1")
 	private int nbHabitant;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_departement")
 	private Departement departement;
 	
 	public Ville() {
@@ -85,10 +91,6 @@ public class Ville {
 	 */
 	public void setDepartement(Departement departement) {
 		this.departement = departement;
-	}
-	
-
-	
-	
+	}	
 	
 }

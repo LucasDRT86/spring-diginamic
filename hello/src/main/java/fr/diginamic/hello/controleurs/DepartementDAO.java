@@ -1,11 +1,10 @@
-package fr.diginamic.dao;
+package fr.diginamic.hello.controleurs;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.diginamic.entite.Departement;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -20,6 +19,11 @@ public class DepartementDAO {
 	public List<Departement> extractDepartement(){ 
 		TypedQuery<Departement> query = em.createQuery("SELECT d FROM Departement d", Departement.class);
 		return query.getResultList();
+	}
+
+	public Departement findByName(String name) {
+		TypedQuery<Departement> query = em.createQuery("SELECT d FROM Departement d WHERE nom = '" + name +"'", Departement.class);
+		return query.getResultList().get(0);
 	}
 	
 	// POST

@@ -1,12 +1,10 @@
-package fr.diginamic.service;
+package fr.diginamic.hello.controleurs;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.diginamic.dao.DepartementDAO;
-import fr.diginamic.entite.Departement;
 import jakarta.annotation.PostConstruct;
 
 @Service
