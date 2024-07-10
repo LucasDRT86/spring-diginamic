@@ -1,12 +1,13 @@
 package fr.diginamic.hello.controleurs;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface VilleRepository extends CrudRepository<Ville, Integer> {
+@Repository
+public interface VilleRepository extends CrudRepository<Ville, Integer> {	
+	Ville findByNom(String nom);
 	
-	/*Ville findByNom(String nom);
+	Ville findByNbHabitantBetweenMinAndMax(int min,int max);
 	
-	Ville findByNbHabitantBetweenMinAndMax(int min,int max);*/
-	
-	//Ville fyndByDepartementAboveMax
+	Ville fyndByDepartementAboveMax();
 }

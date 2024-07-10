@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 
 @RestController
@@ -23,7 +28,16 @@ public class VilleControlleur {
 	@Autowired
 	VilleService villeService;
 	
-
+	/** GET /villes : permet d'extraire la liste de toutes les villes 
+	 * présente dans le système
+	 * @return
+	 */
+	@Operation(summary = "Extraire la liste des villes")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200",
+					description = "Liste des villes au format JSON",
+					content = {@Content(mediaType ="application/json",schema = @Schema(implementation = Ville.class))})
+	})
 	@GetMapping()
 	public List<Ville> getVilles(){		
 		return villeService.extractVilles();

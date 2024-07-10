@@ -41,6 +41,9 @@ public class DepartementControlleur {
 			else if(d.getId() == departement.getId()) {
 				return ResponseEntity.badRequest().body("Erreur 400 : L'id : "+departement.getId() +" est déjà utilisé");
 			}
+			else if(d.getCode() == departement.getCode()) {
+				return ResponseEntity.badRequest().body("Erreur 400 : L'id : "+departement.getId() +" est déjà utilisé");
+			}
 		}
 		
 		departementService.insertDepartement(departement);

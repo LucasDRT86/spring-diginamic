@@ -29,7 +29,7 @@ public class Departement {
 	private int habitant;
 	
 	@NotBlank(message ="Le code departement doitn être non null")
-	private int code;
+	private String code;
 	
 	@OneToMany(mappedBy="departement")
 	@JsonIgnore
@@ -100,14 +100,14 @@ public class Departement {
 	/**
 	 * @return the code
 	 */
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
 
 	/**
 	 * @param code the code to set
 	 */
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 	
